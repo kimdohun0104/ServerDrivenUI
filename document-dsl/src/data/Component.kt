@@ -1,8 +1,7 @@
 package data
 
 import enum.DataType
-
-
+import enum.Intent
 
 data class Component(
     val componentName: String,
@@ -13,7 +12,7 @@ data class Component(
 
 class ComponentBuilder(private val componentName: String) {
 
-    lateinit var content: Content
+    private lateinit var content: Content
 
     private var description: String? = null
     private var action: Action? = null
@@ -24,6 +23,10 @@ class ComponentBuilder(private val componentName: String) {
 
     fun content(name: String, dataType: DataType, block: ContentBuilder.() -> Unit) {
         content = ContentBuilder(name, dataType).apply(block).build()
+    }
+
+    fun action(intent: Intent, block: ActionBuilder.() -> Unit) {
+        action = ActionBuilder(intent).apply(block).build()
     }
 
     fun build(): Component = Component(componentName, content, description, action)
