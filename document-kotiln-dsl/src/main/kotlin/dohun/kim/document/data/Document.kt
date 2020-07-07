@@ -17,8 +17,8 @@ class DocumentBuilder {
 
     private var components: ArrayList<Component> = arrayListOf()
 
-    fun component(componentName: String, block: @DocumentMarker ComponentBuilder.() -> Unit) {
-        components.add(ComponentBuilder(componentName).apply(block).build())
+    fun component(componentName: String, version: Int = 0, block: @DocumentMarker ComponentBuilder.() -> Unit) {
+        components.add(ComponentBuilder(componentName, version).apply(block).build())
     }
 
     fun build(): Document = Document(components)

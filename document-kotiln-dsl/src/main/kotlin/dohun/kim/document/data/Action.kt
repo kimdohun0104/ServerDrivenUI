@@ -1,6 +1,7 @@
 package dohun.kim.document.data
 
 import dohun.kim.document.enum.Intent
+import jdk.nashorn.internal.objects.NativeFunction.apply
 
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION, AnnotationTarget.TYPE, AnnotationTarget.VALUE_PARAMETER)
 @DslMarker

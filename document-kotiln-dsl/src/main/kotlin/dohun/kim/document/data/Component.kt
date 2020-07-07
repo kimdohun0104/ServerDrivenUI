@@ -10,12 +10,16 @@ annotation class ComponentMarker
 data class Component(
     val componentName: String,
     val content: Content,
+    val version: Int,
     val description: String?,
     val action: Action?
 )
 
 @ComponentMarker
-class ComponentBuilder(private val componentName: String) {
+class ComponentBuilder(
+    private val componentName: String,
+    private val version: Int
+) {
 
     private lateinit var content: Content
 
@@ -26,13 +30,13 @@ class ComponentBuilder(private val componentName: String) {
         this.description = description
     }
 
-    fun content(name: String, dataType: DataType, block: @ComponentMarker ContentBuilder.() -> Unit) {
-        content = ContentBuilder(name, dataType).apply(block).build()
+    fun content(name: String, dataType: DataType, nullable: Boolean = false, block: @ComponentMarker ContentBuilder.() -> Unit) {
+        content = ContentBuilder(name, dataType, nullable).apply(block).build()
     }
 
     fun action(intent: Intent, block: @ComponentMarker ActionBuilder.() -> Unit) {
         action = ActionBuilder(intent).apply(block).build()
     }
 
-    fun build(): Component = Component(componentName, content, description, action)
+    fun build(): Component = Component(componentName, content, version, description, action)
 }

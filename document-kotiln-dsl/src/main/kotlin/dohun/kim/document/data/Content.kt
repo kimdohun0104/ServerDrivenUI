@@ -5,13 +5,15 @@ import dohun.kim.document.enum.DataType
 data class Content(
     val name: String,
     val dataType: DataType,
+    val nullable: Boolean,
     val description: String?,
     val example: List<Any>
 )
 
 class ContentBuilder(
     private val name: String,
-    private val dataType: DataType
+    private val dataType: DataType,
+    private val nullable: Boolean
 ) {
     private val example: ArrayList<Any> = arrayListOf()
 
@@ -26,5 +28,5 @@ class ContentBuilder(
     }
 
     fun build(): Content =
-        Content(name, dataType, description, example)
+        Content(name, dataType, nullable, description, example)
 }
