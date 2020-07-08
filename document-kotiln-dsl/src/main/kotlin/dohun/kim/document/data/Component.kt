@@ -30,7 +30,12 @@ class ComponentBuilder(
         this.description = description
     }
 
-    fun content(name: String, dataType: DataType, nullable: Boolean = false, block: @ComponentMarker ContentBuilder.() -> Unit) {
+    fun content(
+        name: String,
+        dataType: DataType,
+        nullable: Boolean = false,
+        block: @ComponentMarker ContentBuilder.() -> Unit
+    ) {
         content = ContentBuilder(name, dataType, nullable).apply(block).build()
     }
 

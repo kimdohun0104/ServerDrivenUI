@@ -13,11 +13,6 @@ data class Action(
     val description: String?
 )
 
-data class ActionData(
-    val route: String?,
-    val uri: String?
-)
-
 @ActionMarker
 class ActionBuilder(private val intent: Intent) {
     private lateinit var data: ActionData
@@ -37,20 +32,3 @@ class ActionBuilder(private val intent: Intent) {
     }
 }
 
-class ActionDataBuilder {
-
-    private var route: String? = null
-    private var uri: String? = null
-
-    fun route(route: String) {
-        this.route = route
-    }
-
-    fun uri(uri: String) {
-        this.uri = uri
-    }
-
-    fun build(): ActionData {
-        return ActionData(route, uri)
-    }
-}

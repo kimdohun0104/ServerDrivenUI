@@ -27,15 +27,12 @@ fun main() {
                 description("This is navigation event to poo")
 
                 data {
-                    route("/poo")
+                    route("/poo") {
+                        argument("id", DataType.STRING)
+                        argument("password", DataType.STRING)
+                    }
                 }
             }
-        }
-
-        component("PooListView", version = 3) {
-            description("This is PooListView")
-
-
         }
     }
 
